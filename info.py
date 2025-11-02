@@ -27,8 +27,8 @@ LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '1002907467919'))
 CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '').split()]
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://harish221130_db_user:Dragonbot30042022@cluster1.odjv9us.mongodb.net/?appName=Cluster1")
 DATABASE_URI2 = environ.get('DATABASE_URI2', "")
-DATABASE_NAME = environ.get('DATABASE_NAME', "Rahul")
-COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Rahul')
+DATABASE_NAME = environ.get('DATABASE_NAME', "Cluster1")
+COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Cluster1')
 LOG_API_CHANNEL = int(environ.get('LOG_API_CHANNEL', '1002907467919'))
 QR_CODE = environ.get('QR_CODE', '')
 DELETE_CHANNELS = [int(dch) if id_pattern.search(dch) else dch for dch in environ.get('DELETE_CHANNELS', '0').split()]
