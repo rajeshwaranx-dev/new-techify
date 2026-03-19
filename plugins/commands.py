@@ -404,7 +404,7 @@ async def start(client, message):
 @Client.on_message(filters.command('logs') & filters.user(ADMINS))
 async def log_file(bot, message):
     try:
-        await message.reply_document('Logs.txt', caption="📑 **ʟᴏɢꜱ**")
+        await message.reply_document('TechifyBots.txt', caption="📑 **ʟᴏɢꜱ**")
     except Exception as e:
         await message.reply(str(e))
 
