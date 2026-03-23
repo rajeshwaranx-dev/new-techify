@@ -48,7 +48,7 @@ UPDATE_CHANNEL = int(environ.get('UPDATE_CHANNEL', '-1002197398349'))
 IMAGE_FETCH = bool(environ.get('IMAGE_FETCH', True))
 LINK_PREVIEW = bool(environ.get('LINK_PREVIEW', False))
 ABOVE_PREVIEW = bool(environ.get('ABOVE_PREVIEW', False))
-TMDB_API_KEY = environ.get('TMDB_API_KEY', '')
+TMDB_API_KEY = environ.get('TMDB_API_KEY', '992a90609f7400986165a20903ab9006')
 TMDB_POSTER = bool(environ.get('TMDB_POSTER', True))
 LANDSCAPE_POSTER = bool(environ.get('LANDSCAPE_POSTER', True))
 
