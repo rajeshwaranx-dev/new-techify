@@ -1166,10 +1166,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "about":
         buttons = [[
-            InlineKeyboardButton('⚙️ ᴄᴏɴᴛʀᴏʟ ᴘᴀɴᴇʟ ⚙️', callback_data='controlpanel')
-        ],[
             InlineKeyboardButton('ᴅᴍᴄᴀ 📝', callback_data='dmca'),
-            InlineKeyboardButton ('ᴅᴏɴᴀᴛᴇ 💰', callback_data='donate')
+            InlineKeyboardButton ('ᴡᴀɴᴛ ʏᴏᴜʀ ᴏᴡɴ ʙᴏᴛ 🤖', callback_data='donate')
         ],[
             InlineKeyboardButton('⋞ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ', callback_data='start')
         ]]
@@ -1253,7 +1251,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "donate":
         buttons = [[
-                InlineKeyboardButton('💳 ᴅᴏɴᴀᴛᴇ ɴᴏᴡ 💳', url='https://askpayments.vercel.app/')
+                InlineKeyboardButton('ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ☎️', url='https://telegram.me/master_xkid')
             ],[
                 InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='about')
             ]]
