@@ -29,7 +29,7 @@ BIN_CHANNEL = int(environ.get('BIN_CHANNEL', '0'))
 PREMIUM_LOGS = int(environ.get('PREMIUM_LOGS', '-1002737733323'))
 DELETE_CHANNELS = [int(dch) if id_pattern.search(dch) else dch for dch in environ.get('DELETE_CHANNELS', '0').split()]
 AUTH_CHANNELS = [int(ch) for ch in environ.get("AUTH_CHANNELS", "").split() if ch and id_pattern.match(ch)]
-AUTH_REQ_CHANNELS = [int(ch) for ch in environ.get("AUTH_REQ_CHANNELS", "-1003518468917").split() if ch and id_pattern.match(ch)]
+AUTH_REQ_CHANNELS = [int(ch) for ch in environ.get("AUTH_REQ_CHANNELS", "-1003860082364").split() if ch and id_pattern.match(ch)]
 REQST_CHANNEL = int(ch) if (ch := environ.get("REQST_CHANNEL", "-1002497903505")) and id_pattern.search(ch) else None
 SUPPORT_CHAT_ID = int(ch) if (ch := environ.get("SUPPORT_CHAT_ID", "-1002844979596")) and id_pattern.search(ch) else None
 
