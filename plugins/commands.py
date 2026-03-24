@@ -94,7 +94,7 @@ async def start(client, message):
                     InlineKeyboardButton('ᴀʙᴏᴜᴛ 📜', callback_data='about'),
                     InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎟', callback_data="premium_info")
                 ],[
-                    InlineKeyboardButton('🌸 ᴀɴɪᴍᴇ ɢᴜɪᴅᴇ 🌸', user_id=int(OWNER))
+                    InlineKeyboardButton('ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ☎️', url='https://telegram.me/master_xkid')
                 ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         m=await message.reply_sticker("CAACAgUAAxkBAAI47WjK1V24t_kyUL-ywJQQdxtaWnaeAAIMFgACpzEZVdpZS0jMvfn5HgQ")
