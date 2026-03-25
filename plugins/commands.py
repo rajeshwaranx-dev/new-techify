@@ -91,11 +91,15 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-                    InlineKeyboardButton('ᴀʙᴏᴜᴛ 📜', callback_data='about'),
-                    InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎟', callback_data="premium_info")
+                    InlineKeyboardButton('⇒ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ⇐', url=f'https://t.me/{temp.B_NAME}?startgroup=start')
                 ],[
-                    InlineKeyboardButton('ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ☎️', url='https://telegram.me/master_xkid'),
-                    InlineKeyboardButton('ʜᴇʟᴘ 🆘', callback_data='help')
+                    InlineKeyboardButton('🛠 ꜱᴇʀᴠɪᴄᴇꜱ', callback_data='donate'),
+                    InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎫', callback_data='premium_info')
+                ],[
+                    InlineKeyboardButton('ᴀʙᴏᴜᴛ 📜', callback_data='about'),
+                    InlineKeyboardButton('ʜᴇʟᴘ 💡', callback_data='help')
+                ],[
+                    InlineKeyboardButton('ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ☎️', url='https://telegram.me/master_xkid')
                 ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         m=await message.reply_sticker("CAACAgUAAxkBAAI47WjK1V24t_kyUL-ywJQQdxtaWnaeAAIMFgACpzEZVdpZS0jMvfn5HgQ")
