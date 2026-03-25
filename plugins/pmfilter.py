@@ -1151,7 +1151,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('ᴀʙᴏᴜᴛ 📜', callback_data='about'),
                     InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎟', callback_data='premium_info')
                 ],[
-                     InlineKeyboardButton('ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ☎️', url='https://telegram.me/master_xkid')
+                     InlineKeyboardButton('ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ☎️', url='https://telegram.me/master_xkid'),
+                     InlineKeyboardButton('ʜᴇʟᴘ 🆘', callback_data='help')
                 ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_media(
@@ -1176,6 +1177,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
             media=InputMediaPhoto(
                 media=random.choice(PICS),
                 caption=script.ABOUT_TXT.format(temp.U_NAME, temp.B_NAME),
+                parse_mode=enums.ParseMode.HTML
+            ),
+            reply_markup=reply_markup
+        )
+
+    elif query.data == "help":
+        buttons = [[
+            InlineKeyboardButton('⇐ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ ⇒', callback_data='start')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_media(
+            media=InputMediaPhoto(
+                media=random.choice(PICS),
+                caption=script.HELP_TXT,
                 parse_mode=enums.ParseMode.HTML
             ),
             reply_markup=reply_markup
