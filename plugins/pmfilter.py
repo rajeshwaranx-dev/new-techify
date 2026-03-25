@@ -1148,11 +1148,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "start":
         buttons = [[
-                    InlineKeyboardButton('ᴀʙᴏᴜᴛ 📜', callback_data='about'),
-                    InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎟', callback_data='premium_info')
+                    InlineKeyboardButton('⇒ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ⇐', url=f'https://t.me/{temp.B_NAME}?startgroup=start')
                 ],[
-                     InlineKeyboardButton('ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ☎️', url='https://telegram.me/master_xkid'),
-                     InlineKeyboardButton('ʜᴇʟᴘ 🆘', callback_data='help')
+                    InlineKeyboardButton('🛠 ꜱᴇʀᴠɪᴄᴇꜱ', callback_data='donate'),
+                    InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎫', callback_data='premium_info')
+                ],[
+                    InlineKeyboardButton('ᴀʙᴏᴜᴛ 📜', callback_data='about'),
+                    InlineKeyboardButton('ʜᴇʟᴘ 💡', callback_data='help')
+                ],[
+                    InlineKeyboardButton('ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ☎️', url='https://telegram.me/master_xkid')
                 ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_media(
@@ -1184,7 +1188,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "help":
         buttons = [[
-            InlineKeyboardButton('⇐ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ ⇒', callback_data='start')
+            InlineKeyboardButton('⇐ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ', callback_data='start')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_media(
@@ -1268,7 +1272,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [[
                 InlineKeyboardButton('ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ☎️', url='https://telegram.me/master_xkid')
             ],[
-                InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='about')
+                InlineKeyboardButton('⇐ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ', callback_data='start')
             ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_media(
