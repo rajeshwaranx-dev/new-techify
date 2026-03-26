@@ -1313,7 +1313,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         reply_markup = InlineKeyboardMarkup(btn)
         await query.message.edit_media(
             media=InputMediaPhoto(
-                media=random.choice(PICS),
+                media=QR_PIC if QR_PIC else random.choice(PICS),
                 caption=script.PREMIUM_TEXT,
                 parse_mode=enums.ParseMode.HTML
             ),
