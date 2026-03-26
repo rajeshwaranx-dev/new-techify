@@ -109,12 +109,15 @@ async def start(client, message):
         m=await message.reply_sticker("CAACAgUAAxkBAAI47WjK1V24t_kyUL-ywJQQdxtaWnaeAAIMFgACpzEZVdpZS0jMvfn5HgQ")
         await asyncio.sleep(2)
         await m.delete()        
-        await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.START_TXT.format(message.from_user.mention, get_status(), temp.U_NAME or '', temp.B_NAME or ''),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
+        try:
+            await message.reply_photo(
+                photo=random.choice(PICS),
+                caption=script.START_TXT.format(message.from_user.mention, get_status(), temp.U_NAME or '', temp.B_NAME or ''),
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+            )
+        except Exception as e:
+            await message.reply_text(f"DEBUG ERROR: {str(e)}")
         return
     if message.command[1].startswith("reff_"):
         try:
