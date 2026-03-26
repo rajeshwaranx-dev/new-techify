@@ -93,9 +93,8 @@ async def start(client, message):
         except Exception:
             pass
     if len(message.command) != 2:
-        b_name = temp.B_NAME.strip("@") if temp.B_NAME else "bot"
         buttons = [[
-                    InlineKeyboardButton('⇒ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ⇐', url=f'https://t.me/{b_name}?startgroup=start')
+                    InlineKeyboardButton('⇒ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ⇐', url=f'https://t.me/{temp.U_NAME}?startgroup=start')
                 ],[
                     InlineKeyboardButton('🛠 ꜱᴇʀᴠɪᴄᴇꜱ', callback_data='donate'),
                     InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎫', callback_data='premium_info')
@@ -109,15 +108,12 @@ async def start(client, message):
         m=await message.reply_sticker("CAACAgUAAxkBAAI47WjK1V24t_kyUL-ywJQQdxtaWnaeAAIMFgACpzEZVdpZS0jMvfn5HgQ")
         await asyncio.sleep(2)
         await m.delete()        
-        try:
-            await message.reply_photo(
-                photo=random.choice(PICS),
-                caption=script.START_TXT.format(message.from_user.mention, get_status(), temp.U_NAME or '', temp.B_NAME or ''),
-                reply_markup=reply_markup,
-                parse_mode=enums.ParseMode.HTML
-            )
-        except Exception as e:
-            await message.reply_text(f"DEBUG ERROR: {str(e)}")
+        await message.reply_photo(
+            photo=random.choice(PICS),
+            caption=script.START_TXT.format(message.from_user.mention, get_status(), temp.U_NAME or '', temp.B_NAME or ''),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
         return
     if message.command[1].startswith("reff_"):
         try:
