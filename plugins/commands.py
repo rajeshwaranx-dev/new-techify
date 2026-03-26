@@ -13,7 +13,6 @@ from .pmfilter import auto_filter
 from Script import script
 from datetime import datetime
 from database.refer import referdb
-from database.config_db import mdb
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ReplyKeyboardMarkup, WebAppInfo
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, ChatAdminRequired, UserNotParticipant
@@ -683,64 +682,6 @@ async def deletemultiplefiles(bot, message):
         reply_markup=InlineKeyboardMarkup(btn),
         parse_mode=enums.ParseMode.HTML
     )
-
-@Client.on_message(filters.command('top'))
-async def top(_, message):
-    def is_alphanumeric(string):
-        return bool(re.match('^[a-zA-Z0-9 ]*$', string))
-    try:
-        limit = int(message.command[1])
-    except (IndexError, ValueError):
-        limit = 20
-    top_messages = await mdb.get_top_messages(limit)
-    seen_messages = set()
-    truncated_messages = []
-    for msg in top_messages:
-        msg_lower = msg.lower()
-        if msg_lower not in seen_messages and is_alphanumeric(msg):
-            seen_messages.add(msg_lower)
-            if len(msg) > 35:
-                truncated_messages.append(msg[:32] + "...")
-            else:
-                truncated_messages.append(msg)
-    keyboard = [truncated_messages[i:i+2] for i in range(0, len(truncated_messages), 2)]
-    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True, resize_keyboard=True, placeholder="ᴛᴏᴘ sᴇᴀʀᴄʜ")
-    await message.reply_text("<b>ᴛᴏᴅᴀʏ's ᴛᴏᴘ sᴇᴀʀᴄʜᴇs</b>", reply_markup=reply_markup)
-
-@Client.on_message(filters.command('trending'))
-async def trending(client, message):
-    def is_alphanumeric(string):
-        return bool(re.match('^[a-zA-Z0-9 ]*$', string))
-    limit = 31
-    if len(message.command) > 1:
-        try:
-            limit = int(message.command[1])
-        except ValueError:
-            await message.reply_text(
-                "Invalid number format.\nPlease provide a valid number after the /trending command."
-            )
-            return
-    try:
-        top_messages = await mdb.get_top_messages(limit)
-    except Exception as e:
-        await message.reply_text(f"Error retrieving messages: {str(e)}")
-        return
-    if not top_messages:
-        await message.reply_text("No top messages found.")
-        return
-    seen_messages = set()
-    truncated_messages = []
-    for msg in top_messages:
-        msg_lower = msg.lower()
-        if msg_lower not in seen_messages and is_alphanumeric(msg):
-            seen_messages.add(msg_lower)
-            truncated_messages.append(msg[:32] + '...' if len(msg) > 35 else msg)
-    if not truncated_messages:
-        await message.reply_text("No valid top messages found.")
-        return
-    formatted_list = "\n".join([f"{i+1}. <b>{msg}</b>" for i, msg in enumerate(truncated_messages)])
-    reply_text = f"<b>Trending {len(truncated_messages)} Today</b>\n\n{formatted_list}"
-    await message.reply_text(reply_text)
 
 @Client.on_message(filters.private & filters.command("pm_search") & filters.user(ADMINS))
 async def set_pm_search(client, message):
