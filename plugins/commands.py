@@ -88,7 +88,10 @@ async def start(client, message):
         return 
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.id, message.from_user.first_name)
-        await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+        try:
+            await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+        except Exception:
+            pass
     if len(message.command) != 2:
         b_name = temp.B_NAME.strip("@") if temp.B_NAME else "bot"
         buttons = [[
@@ -108,7 +111,7 @@ async def start(client, message):
         await m.delete()        
         await message.reply_photo(
             photo=random.choice(PICS),
-            caption=script.START_TXT.format(message.from_user.mention, get_status(), temp.U_NAME, temp.B_NAME),
+            caption=script.START_TXT.format(message.from_user.mention, get_status(), temp.U_NAME or '', temp.B_NAME or ''),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
