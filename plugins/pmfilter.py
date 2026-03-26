@@ -668,8 +668,10 @@ async def filter_seasons_cb_handler(client: Client, query: CallbackQuery):
 @Client.on_callback_query(group=10)
 async def cb_handler(client: Client, query: CallbackQuery):
     TechifyBots = query.data
+    link = None
     try:
-        link = await client.create_chat_invite_link(int(REQST_CHANNEL))
+        if REQST_CHANNEL and int(REQST_CHANNEL) != 0:
+            link = await client.create_chat_invite_link(int(REQST_CHANNEL))
     except:
         pass
     if query.data == "close_data":
@@ -1160,14 +1162,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ☎️', url='https://telegram.me/master_xkid')
                 ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_media(
-            media=InputMediaPhoto(
-                media=random.choice(PICS),
-                caption=script.START_TXT.format(query.from_user.mention, get_status(), temp.U_NAME or '', temp.B_NAME or ''),
-                parse_mode=enums.ParseMode.HTML
-            ),
-            reply_markup=reply_markup
-        )
+        try:
+            await query.message.edit_media(
+                media=InputMediaPhoto(
+                    media=random.choice(PICS),
+                    caption=script.START_TXT.format(query.from_user.mention, get_status(), temp.U_NAME or '', temp.B_NAME or ''),
+                    parse_mode=enums.ParseMode.HTML
+                ),
+                reply_markup=reply_markup
+            )
+        except Exception as e:
+            await query.answer(str(e)[:200], show_alert=True)
+            return
         await query.answer(MSG_ALRT)
 
     elif query.data == "about":
