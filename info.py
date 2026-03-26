@@ -21,6 +21,7 @@ USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
 INDEX_CAPTION = bool(environ.get('INDEX_CAPTION', False))
 COVER = bool(environ.get('COVER', False))
 PICS = (environ.get('PICS', 'https://graph.org/file/dc8d94be0c5b2c9693e75-707e6fdfb7fc8d3e2c.jpg')).split()
+QR_PIC = environ.get('QR_PIC', 'https://graph.org/file/70d6683aab0aaedc01973-acad0c1612c516f68a.jpg')
 MELCOW_PHOTO = environ.get("MELCOW_PHOTO", "https://i.ibb.co/2769f1rF/photo-2025-09-03-14-48-34-7548400762112442372.jpg")
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '7246154050 ').split()]
 CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002030715343').split()]
