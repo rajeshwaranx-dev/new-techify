@@ -13,7 +13,6 @@ from fuzzywuzzy import process
 from web.utils import get_name, get_hash
 from urllib.parse import quote_plus
 from database.ia_filterdb import Media, Media2, get_file_details, get_search_results, get_bad_files
-from database.config_db import mdb
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid, ChatAdminRequired, UserNotParticipant
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo, InputMediaPhoto
@@ -49,7 +48,6 @@ async def give_filter(client, message):
         total=await client.get_chat_members_count(message.chat.id)
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, "Unknown"))
 
-    await mdb.update_top_messages(message.from_user.id, message.text)
     if message.chat.id != SUPPORT_CHAT_ID:
         settings = await get_settings(message.chat.id)
         try:
@@ -81,7 +79,6 @@ async def pm_text(bot, message):
     if content.startswith(("#")):
         return
     try:
-        await mdb.update_top_messages(user_id, content)
         pm_search = await db.pm_search_status(bot_id)
         if pm_search:
             await auto_filter(bot, message)
@@ -1305,7 +1302,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "buy_info":
         btn = [[
-            InlineKeyboardButton('ꜱᴛᴀʀ 🌟', callback_data='star_info'),
             InlineKeyboardButton('ᴜᴘɪ 💳', callback_data='upi_info')
         ],[
             InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='premium_info')
@@ -1337,23 +1333,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup
         )
         await query.answer()
-
-    elif query.data == "star_info":
-        btn = [
-            InlineKeyboardButton(f"{stars} ⭐", callback_data=f"buy_{stars}")
-            for stars, days in STAR_PREMIUM_PLANS.items()
-            ]
-        buttons = [btn[i:i + 2] for i in range(0, len(btn), 2)]
-        buttons.append([InlineKeyboardButton("⋞ ʙᴀᴄᴋ", callback_data="buy_info")])
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_media(
-            media=InputMediaPhoto(
-                media=random.choice(PICS),
-                caption=script.PREMIUM_STAR_TEXT,
-                parse_mode=enums.ParseMode.HTML
-            ),
-            reply_markup=reply_markup
-        )
 
     elif query.data == "ref_point":
         await query.answer(f'ʀᴇꜰᴇʀʀᴀʟ ᴘᴏɪɴᴛꜱ: {referdb.get_refer_points(query.from_user.id)}', show_alert=True)
