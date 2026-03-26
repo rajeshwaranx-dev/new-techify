@@ -1147,8 +1147,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await tb.delete()
 
     elif query.data == "start":
+        b_name = temp.B_NAME.strip("@") if temp.B_NAME else "bot"
         buttons = [[
-                    InlineKeyboardButton('⇒ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ⇐', url=f'https://t.me/{temp.B_NAME}?startgroup=start')
+                    InlineKeyboardButton('⇒ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ⇐', url=f'https://t.me/{b_name}?startgroup=start')
                 ],[
                     InlineKeyboardButton('🛠 ꜱᴇʀᴠɪᴄᴇꜱ', callback_data='donate'),
                     InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎫', callback_data='premium_info')
@@ -1162,7 +1163,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.message.edit_media(
             media=InputMediaPhoto(
                 media=random.choice(PICS),
-                caption=script.START_TXT.format(query.from_user.mention, get_status(), temp.U_NAME, temp.B_NAME),
+                caption=script.START_TXT.format(query.from_user.mention, get_status(), temp.U_NAME or '', temp.B_NAME or ''),
                 parse_mode=enums.ParseMode.HTML
             ),
             reply_markup=reply_markup
