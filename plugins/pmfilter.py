@@ -1304,6 +1304,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         btn = [[
             InlineKeyboardButton('ᴜᴘɪ 💳', callback_data='upi_info')
         ],[
+            InlineKeyboardButton('📲 ꜱᴇɴᴅ  ᴘᴀʏᴍᴇɴᴛ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ 📲', user_id=int(OWNER))
+        ],[
             InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='premium_info')
         ]]
         reply_markup = InlineKeyboardMarkup(btn)
