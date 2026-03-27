@@ -1302,7 +1302,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "buy_info":
         btn = [[
-            InlineKeyboardButton('ᴜᴘɪ 💳', callback_data='upi_info')
+            InlineKeyboardButton('UPI 💳', url='https://askpayments.vercel.app/')
         ],[
             InlineKeyboardButton('📲 ꜱᴇɴᴅ  ᴘᴀʏᴍᴇɴᴛ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ 📲', user_id=int(OWNER))
         ],[
